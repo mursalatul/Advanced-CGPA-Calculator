@@ -8,6 +8,10 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import database.LoginDB;
 
 public class Login {
     public void login() {
@@ -88,6 +92,41 @@ public class Login {
         loginButton.setVisible(true);
         frame.add(loginButton);
         loginButton.setBorder(border);
+        // action listener
+        loginButton.addActionListener(new ActionListener() {
+           public void actionPerformed(ActionEvent e) {
+               // getting role
+               String role = (String)dropdown.getSelectedItem();
+               // lowwer casing the role case it is showing in the capital form but in the other parts of the program it is used in lower case
+               role = role.toLowerCase();
+                // getting username from username field
+               String username = userField.getText();
+               // getting password from password field
+               char[] passChars = passField.getPassword();
+               String password = new String(passChars);
+               // creating LoginDB object to access login creadentials
+               LoginDB loginDBObj = new LoginDB();
+               if (loginDBObj.isPresent(role, username, password) == true) {
+                   JOptionPane.showMessageDialog(frame,"Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                   
+                   // hiding login fram
+                   frame.setVisible(false);
+                   // call student
+                   if (role.compareTo("student") == 0) {
+                       StudentMain studentGUIObj = new StudentMain();
+                       studentGUIObj.studentmain();
+                   }
+                   // call teacher
+                   else {
+                       TeacherInputPage teach1Obj = new TeacherInputPage();
+                       teach1Obj.teacher();
+                   }
+               }
+               else {
+                   JOptionPane.showMessageDialog(frame, "Invalid Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
+               }
+           } 
+        });
         
         
     }
