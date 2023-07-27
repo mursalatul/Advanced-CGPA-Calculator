@@ -13,17 +13,17 @@ import gradecalculation.Grade;
 public class Database {
 
     private Connection connection;
-    private Statement statement;
+    protected Statement statement;
 
     /**
      * connect the database and initialize the statement
      * 
-     * @param none
+     * @param database name
      * @return none
     */
-    public Database() {
+    protected void connect(String database) {
         // Database credentials
-        String url = "jdbc:mysql://localhost:3306/cgpa_storage";
+        String url = "jdbc:mysql://localhost:3306/" + database;
         String user = "root";
         String password = "root";
 
@@ -44,7 +44,7 @@ public class Database {
      * @param semester number
      * @return sql table name
      */
-    private String tableName(int semester_no) {
+    protected String tableName(int semester_no) {
         return "semester" + Integer.toString(semester_no);
     }
 
@@ -54,7 +54,7 @@ public class Database {
      * @param string (command)
      * @return Successful / error message
      */
-    private String execute(String command) {
+    protected String execute(String command) {
         String status;
         //        executing the command with this.statement
         try {
@@ -76,13 +76,13 @@ public class Database {
      */
     public String createTable(int semester_no) {
         String status;
-//        setting up table name. table name will be "semester"+number of semester
+        // setting up table name. table name will be "semester"+number of semester
         String tableName = tableName(semester_no);
 
-//        creating mysql command
+        // creating mysql command
         String createTableCommand = "CREATE TABLE `cgpa_storage`." + tableName + " (`No` INT(1) NOT NULL AUTO_INCREMENT , `Course No` TEXT NOT NULL , `Course Title` TEXT NOT NULL , `Incourse` INT NOT NULL , `Final` INT NOT NULL , `Grade Letter` TEXT NOT NULL , `Grade Point` FLOAT NOT NULL , `Avg Grade Letter` TEXT NOT NULL , `Avg Grade Point` FLOAT NOT NULL , PRIMARY KEY (`No`)) ENGINE = InnoDB";
 
-//        executing the command with this.statement
+        // executing the command with this.statement
         try {
             this.statement.execute(createTableCommand);
             status = "Successful";
@@ -100,13 +100,13 @@ public class Database {
      */
     public String deleteTable(int semester_no) {
         String status;
-//        setting up table name. table name will be "semester"+number of semester
+        // setting up table name. table name will be "semester"+number of semester
         String tableName = tableName(semester_no);
 
-//        creating mysql command
+        // creating mysql command
         String createTableCommand = "DROP TABLE " + tableName;
 
-//        executing the command with this.statement
+        // executing the command with this.statement
         try {
             this.statement.execute(createTableCommand);
             status = "Successful";
@@ -126,7 +126,7 @@ public class Database {
         command = "INSERT INTO " + table + " (`Course No`, `Course Title`, `Incourse`, `Final`, `Grade Letter`, `Grade Point`, `Avg Grade Letter`, `Avg Grade Point`) " +
                 "VALUES " + "('" + course_no + "','" + course_title + "','" + Integer.toString(inc) + 
                 "','"+ Integer.toString(fin) + "','" + grade_letter+"','"+grade_point+"', 'NULL', '0.00')";
-//        System.out.println(command);
+        // System.out.println(command);
         return execute(command);
     }
     

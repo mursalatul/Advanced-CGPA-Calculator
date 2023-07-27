@@ -16,21 +16,21 @@ public class Login {
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        no border is visible, but it is helpfull to element visiblity
+        //no border is visible, but it is helpfull to element visiblity
         Border border = BorderFactory.createLineBorder(Color.BLUE, 0);
         
-//        login window heading
+        // login window heading
         JLabel heading = new JLabel("Login");
-//        change the value for positioning
+        // change the value for positioning
         int headingX = 170, headingY = 5, headingW = 100, headingH = 30;
         heading.setFont(new Font("Arial", Font.BOLD, 20));
         heading.setBounds(headingX, headingY, headingW, headingH);
         heading.setVisible(true);
         frame.add(heading);
         
-//        drop box label
+        // drop box label
         JLabel dDLabel = new JLabel("Login as:");
-//        change the value for possiting 
+        // change the value for possiting 
         int dDLabelX = 100, dDLabelY = 60, dDLabelW = 100, dDLabelH = 30;
         dDLabel.setBounds(dDLabelX, dDLabelY, dDLabelW, dDLabelH);
         dDLabel.setVisible(true);
@@ -38,7 +38,7 @@ public class Login {
         dDLabel.setBorder(border);
         
         
-//        drop box for selecting login as student or teacher
+        // drop box for selecting login as student or teacher
         String[] options = {"Student", "Teacher"};
         JComboBox<String> dropdown = new JComboBox<>(options);
         dropdown.setBounds(210, 60, 100, 30);
@@ -46,8 +46,8 @@ public class Login {
         frame.add(dropdown);
         dropdown.setBorder(border);
         
-//        username
-//        username label
+        // username
+        // username label
         JLabel userLabel = new JLabel("Username:");
         int userLabelX = 50, userLabelY = 150, userLabelW = 100, userLabelH = 30;
         userLabel.setBounds(userLabelX, userLabelY, userLabelW, userLabelH);
@@ -56,7 +56,7 @@ public class Login {
         frame.add(userLabel);
         userLabel.setBorder(border);
         
-//        username testfield
+        // username testfield
         JTextField userField = new JTextField();
         int userFieldX = 200, userFieldY = 150, userFieldW = 150, userFieldH = 30;
         userField.setBounds(userFieldX, userFieldY, userFieldW, userFieldH);
@@ -64,8 +64,8 @@ public class Login {
         frame.add(userField);
         userField.setBorder(border);
         
-        //        password
-//        password label
+        // password
+        // password label
         JLabel passLabel = new JLabel("Password:");
         int passLabelX = 50, passLabelY = 200, passLabelW = 100, passLabelH = 30;
         passLabel.setBounds(passLabelX, passLabelY, passLabelW, passLabelH);
@@ -74,7 +74,7 @@ public class Login {
         frame.add(passLabel);
         passLabel.setBorder(border);
         
-//        password testfield
+        // password testfield
         JPasswordField passField = new JPasswordField();
         int passFieldX = 200, passFieldY = 200, passFieldW = 150, passFieldH = 30;
         passField.setBounds(passFieldX, passFieldY, passFieldW, passFieldH);
@@ -82,7 +82,7 @@ public class Login {
         frame.add(passField);
         passField.setBorder(border);
         
-//        loging button
+        // loging button
         JButton loginButton = new JButton("LOGIN");
         loginButton.setBounds(10, 300,380, 50);
         loginButton.setVisible(true);
