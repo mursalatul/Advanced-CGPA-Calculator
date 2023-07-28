@@ -113,8 +113,10 @@ public class Login {
                    frame.setVisible(false);
                    // call student
                    if (role.compareTo("student") == 0) {
+                       // extractiong roll from password
+                       String roll = extractRoll(password);
                        StudentMain studentGUIObj = new StudentMain();
-                       studentGUIObj.studentmain();
+                       studentGUIObj.studentmain(roll);
                    }
                    // call teacher
                    else {
@@ -129,5 +131,24 @@ public class Login {
         });
         
         
+    }
+    /**
+     * extract the hidden roll comes with the password 
+     * every password has 2 part. Pallob@19 -> Password = Pallob, roll = 19
+     * @param password
+     * @return roll
+     */
+    private String extractRoll(String pass) {
+        String roll = "";
+        boolean start = false;
+        for (int i = 0; i < pass.length(); i++) {
+            if (start == true) {
+                roll += pass.charAt(i);
+            }
+            if (pass.charAt(i) == '@') {
+                start = true;
+            }
+        }
+        return roll;
     }
 }
