@@ -26,7 +26,7 @@ public class StudentMain {
         frameStu.setVisible(true);
         frameStu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // no border is visible, but it is helpfull to element visiblity
-        Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
+        Border border = BorderFactory.createLineBorder(Color.BLUE, 0);
 
         // window heading
         JLabel heading = new JLabel("CGPA Calculator");
@@ -140,7 +140,7 @@ public class StudentMain {
         // "incourse + other" text
         JLabel l4 = new JLabel("Incourse+");
         JLabel l4_2 = new JLabel("Other");
-        int l4X = 130, l4Y = 260, l4W = 65, l4H = 30;
+        int l4X = 130, l4Y = 260, l4W = 65, l4H = 20;
         l4.setBounds(l4X, l4Y, l4W, l4H);
         l4_2.setBounds(l4X, l4Y + 20, l4W, l4H);
         l4.setFont(new Font("Arial", Font.BOLD, 10));
@@ -182,11 +182,6 @@ public class StudentMain {
         frameStu.add(l7);
         l7.setBorder(border);
         
-        // panel for fields
-        JPanel fPanel = new JPanel();
-        fPanel.setBounds(50, 300, 500, 291);
-        frameStu.add(fPanel);
-        fPanel.setBorder(border);
         
         
         // field's properties
@@ -224,6 +219,24 @@ public class StudentMain {
         frameStu.add(f13);
         f13.setBorder(border);
         
+        // grade letter label 1
+        JLabel gL1 = new JLabel("x");
+        int gL1X = 355, gL1Y = f11Y;
+        gL1.setBounds(gL1X, gL1Y, fW, fH);
+        gL1.setFont(new Font("Arial", Font.BOLD, 14));
+        gL1.setVisible(true);
+        frameStu.add(gL1);
+        gL1.setBorder(border);
+        
+        // grade point label 1
+        JLabel gP1 = new JLabel("0.00");
+        int gP1X = 480, gP1Y = f11Y;
+        gP1.setBounds(gP1X, gP1Y, fW, fH);
+        gP1.setFont(new Font("Arial", Font.BOLD, 14));
+        gP1.setVisible(true);
+        frameStu.add(gP1);
+        gP1.setBorder(border);
+        
         // row 2
         // field f21
         JTextField f21 = new JTextField();
@@ -254,6 +267,24 @@ public class StudentMain {
         f23.setVisible(true);
         frameStu.add(f23);
         f23.setBorder(border);
+        
+        // grade letter label 2
+        JLabel gL2 = new JLabel("x");
+        int gL2X = 355, gL2Y = f21Y;
+        gL2.setBounds(gL2X, gL2Y, fW, fH);
+        gL2.setFont(new Font("Arial", Font.BOLD, 14));
+        gL2.setVisible(true);
+        frameStu.add(gL2);
+        gL2.setBorder(border);
+        
+        // grade point label 2
+        JLabel gP2 = new JLabel("0.00");
+        int gP2X = 480, gP2Y = f21Y;
+        gP2.setBounds(gP2X, gP2Y, fW, fH);
+        gP2.setFont(new Font("Arial", Font.BOLD, 14));
+        gP2.setVisible(true);
+        frameStu.add(gP2);
+        gP2.setBorder(border);
         
         // row 3
         // field f31
@@ -286,6 +317,24 @@ public class StudentMain {
         frameStu.add(f33);
         f33.setBorder(border);
         
+        // grade letter label 3
+        JLabel gL3 = new JLabel("x");
+        int gL3X = 355, gL3Y = f31Y;
+        gL3.setBounds(gL3X, gL3Y, fW, fH);
+        gL3.setFont(new Font("Arial", Font.BOLD, 14));
+        gL3.setVisible(true);
+        frameStu.add(gL3);
+        gL3.setBorder(border);
+        
+        // grade point label 3
+        JLabel gP3 = new JLabel("0.00");
+        int gP3X = 480, gP3Y = f31Y;
+        gP3.setBounds(gP3X, gP3Y, fW, fH);
+        gP3.setFont(new Font("Arial", Font.BOLD, 14));
+        gP3.setVisible(true);
+        frameStu.add(gP3);
+        gP3.setBorder(border);
+        
         // row 4
         // field f41
         JTextField f41 = new JTextField();
@@ -316,6 +365,24 @@ public class StudentMain {
         f43.setVisible(true);
         frameStu.add(f43);
         f43.setBorder(border);
+        
+        // grade letter label 4
+        JLabel gL4 = new JLabel("x");
+        int gL4X = 355, gL4Y = f41Y;
+        gL4.setBounds(gL4X, gL4Y, fW, fH);
+        gL4.setFont(new Font("Arial", Font.BOLD, 14));
+        gL4.setVisible(true);
+        frameStu.add(gL4);
+        gL4.setBorder(border);
+        
+        // grade point label 4
+        JLabel gP4 = new JLabel("0.00");
+        int gP4X = 480, gP4Y = f41Y;
+        gP4.setBounds(gP4X, gP4Y, fW, fH);
+        gP4.setFont(new Font("Arial", Font.BOLD, 14));
+        gP4.setVisible(true);
+        frameStu.add(gP4);
+        gP4.setBorder(border);
         
         // row 5
         // field f51
@@ -348,6 +415,24 @@ public class StudentMain {
         frameStu.add(f53);
         f53.setBorder(border);
         
+        // grade letter label 5
+        JLabel gL5 = new JLabel("x");
+        int gL5X = 355, gL5Y = f51Y;
+        gL5.setBounds(gL5X, gL5Y, fW, fH);
+        gL5.setFont(new Font("Arial", Font.BOLD, 14));
+        gL5.setVisible(true);
+        frameStu.add(gL5);
+        gL5.setBorder(border);
+        
+        // grade point label 5
+        JLabel gP5 = new JLabel("0.00");
+        int gP5X = 480, gP5Y = f51Y;
+        gP5.setBounds(gP5X, gP5Y, fW, fH);
+        gP5.setFont(new Font("Arial", Font.BOLD, 14));
+        gP5.setVisible(true);
+        frameStu.add(gP5);
+        gP5.setBorder(border);
+        
         // row 6
         // field f61
         JTextField f61 = new JTextField();
@@ -379,21 +464,60 @@ public class StudentMain {
         frameStu.add(f63);
         f63.setBorder(border);
         
+        // grade letter label 6
+        JLabel gL6 = new JLabel("x");
+        int gL6X = 355, gL6Y = f61Y;
+        gL6.setBounds(gL6X, gL6Y, fW, fH);
+        gL6.setFont(new Font("Arial", Font.BOLD, 14));
+        gL6.setVisible(true);
+        frameStu.add(gL6);
+        gL6.setBorder(border);
         
-//        // panel for button
-//        JPanel btnPanel = new JPanel();
-//        btnPanel.setBounds(50, 600, 300, 100);
-//        btnPanel.setBorder(border);
-//        frameStu.add(btnPanel);
+        // grade point label 6
+        JLabel gP6 = new JLabel("0.00");
+        int gP6X = 480, gP6Y = f61Y;
+        gP6.setBounds(gP6X, gP6Y, fW, fH);
+        gP6.setFont(new Font("Arial", Font.BOLD, 14));
+        gP6.setVisible(true);
+        frameStu.add(gP6);
+        gP6.setBorder(border);
         
+        // "Average" label
+        JLabel avgL = new JLabel("Average:");
+        avgL.setBounds(230, 600, 70, 50);
+        avgL.setVisible(true);
+        avgL.setFont(new Font("Arial", Font.BOLD, 15));
+        avgL.setBorder(border);
+        frameStu.add(avgL);
+        
+        // grade letter label final
+        JLabel gLFinal = new JLabel("x");
+        int gLFinalX = 355, gLFinalY = 600;
+        gLFinal.setBounds(gLFinalX, gL6Y, fW, fH);
+        gLFinal.setFont(new Font("Arial", Font.BOLD, 15));
+        gLFinal.setVisible(true);
+        frameStu.add(gLFinal);
+        gLFinal.setBorder(border);
+        
+        // grade point label final
+        JLabel gPFinal = new JLabel("0.00");
+        int gPFinalX = 480, gPFinalY = 600;
+        gPFinal.setBounds(gPFinalX, gPFinalY, fW, fH);
+        gPFinal.setFont(new Font("Arial", Font.BOLD, 15));
+        gPFinal.setVisible(true);
+        frameStu.add(gPFinal);
+        gPFinal.setBorder(border);
         
         // calculate & clear button
         JButton calBtn = new JButton("Calculate");
         JButton clrBtn = new JButton("Clear");
         
-        int btnX = 50, btnY = 600, btnW = 70, btnH = 50;
+        calBtn.setFont(new Font("Arial", Font.BOLD, 16));
+        clrBtn.setFont(new Font("Arial", Font.BOLD, 16));
+        
+        int btnX = 50, btnY = 600, btnW = 80, btnH = 50;
         calBtn.setBounds(btnX, btnY, btnW, btnH);
-        clrBtn.setBounds(btnX + 80, btnY, btnW, btnH);
+        clrBtn.setBounds(btnX + 90, btnY, btnW, btnH);
         
         calBtn.setVisible(true);
         clrBtn.setVisible(true);
@@ -405,6 +529,8 @@ public class StudentMain {
         
         frameStu.add(calBtn);
         frameStu.add(clrBtn);
+        
+        
         
     }
 }
