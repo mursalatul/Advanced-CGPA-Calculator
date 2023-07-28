@@ -3,6 +3,7 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.sql.*;
 
 import gradecalculation.Grade;
@@ -141,5 +142,22 @@ public class Database {
     public String clearTable(int semester_no) {
         String tableName = tableName(semester_no);
         return execute("DELETE FROM " + tableName);
+    }
+    
+    /**
+     * get all the data of a table
+     * @param, table name
+     * @return ResultSet
+     */
+    public ResultSet getData(String table) {
+        ResultSet data = null;
+        String query = "SELECT * FROM `" + table + "`";
+        try {
+            // get data from role(student/teacher) table
+            data = statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return data;
     }
 }
