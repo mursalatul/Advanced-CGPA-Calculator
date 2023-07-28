@@ -44,6 +44,7 @@ public class TeacherConfirmPage {
 
         JFrame frameTea2 = new JFrame();
         frameTea2.setSize(400, 400);
+        frameTea2.setResizable(false);
         frameTea2.setLayout(null);
         frameTea2.setVisible(true);
         frameTea2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

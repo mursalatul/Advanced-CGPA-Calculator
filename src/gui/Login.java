@@ -17,6 +17,7 @@ public class Login {
     public void login() {
         JFrame frame = new JFrame();
         frame.setSize(400, 500);
+        frame.setResizable(false);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

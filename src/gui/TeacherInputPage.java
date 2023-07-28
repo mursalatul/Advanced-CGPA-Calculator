@@ -17,6 +17,7 @@ public class TeacherInputPage {
     public void teacher() {
         JFrame frameTea = new JFrame();
         frameTea.setSize(400, 460);
+        frameTea.setResizable(false);
         frameTea.setLayout(null);
         frameTea.setVisible(true);
         frameTea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

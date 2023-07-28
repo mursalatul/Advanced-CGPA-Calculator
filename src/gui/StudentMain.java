@@ -493,7 +493,7 @@ public class StudentMain {
         // grade letter label final
         JLabel gLFinal = new JLabel("x");
         int gLFinalX = 355, gLFinalY = 600;
-        gLFinal.setBounds(gLFinalX, gL6Y, fW, fH);
+        gLFinal.setBounds(gLFinalX, gLFinalY, fW, fH);
         gLFinal.setFont(new Font("Arial", Font.BOLD, 15));
         gLFinal.setVisible(true);
         frameStu.add(gLFinal);
