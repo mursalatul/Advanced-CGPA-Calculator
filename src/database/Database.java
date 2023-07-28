@@ -14,6 +14,7 @@ public class Database {
 
     private Connection connection;
     protected Statement statement;
+    private String database;
 
     /**
      * connect the database and initialize the statement
@@ -21,8 +22,9 @@ public class Database {
      * @param database name
      * @return none
     */
-    protected void connect(String database) {
+    public void connect(String database) {
         // Database credentials
+        this.database = database;
         String url = "jdbc:mysql://localhost:3306/" + database;
         String user = "root";
         String password = "root";
@@ -80,7 +82,7 @@ public class Database {
         String tableName = tableName(semester_no);
 
         // creating mysql command
-        String createTableCommand = "CREATE TABLE `cgpa_storage`." + tableName + " (`No` INT(1) NOT NULL AUTO_INCREMENT , `Course No` TEXT NOT NULL , `Course Title` TEXT NOT NULL , `Incourse` INT NOT NULL , `Final` INT NOT NULL , `Grade Letter` TEXT NOT NULL , `Grade Point` FLOAT NOT NULL , `Avg Grade Letter` TEXT NOT NULL , `Avg Grade Point` FLOAT NOT NULL , PRIMARY KEY (`No`)) ENGINE = InnoDB";
+        String createTableCommand = "CREATE TABLE `"+this.database+"`." + tableName + " (`No` INT(1) NOT NULL AUTO_INCREMENT , `Course No` TEXT NOT NULL , `Course Title` TEXT NOT NULL , `Incourse` INT NOT NULL , `Final` INT NOT NULL , `Grade Letter` TEXT NOT NULL , `Grade Point` FLOAT NOT NULL , `Avg Grade Letter` TEXT NOT NULL , `Avg Grade Point` FLOAT NOT NULL , PRIMARY KEY (`No`)) ENGINE = InnoDB";
 
         // executing the command with this.statement
         try {

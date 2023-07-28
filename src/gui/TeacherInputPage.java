@@ -3,6 +3,10 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import gradecalculation.Grade;
 
 /**
  *
@@ -194,5 +198,60 @@ public class TeacherInputPage {
         calTea1.setVisible(true);
         frameTea.add(calTea1);
         calTea1.setBorder(border);
+        
+        // action listener with calculate button
+        calTea1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // getting data from the field
+                String batch, courseNo, courseTitle, semester, roll, incourse, fina, other;
+                batch = batchF.getText();
+                courseNo = courseF.getText();
+                courseTitle = courseTF.getText();
+                semester = semF.getText();
+                roll = rollF.getText();
+                incourse = incourseF.getText();
+                fina = finalF.getText();
+                other = otherF.getText();
+                
+                // checking if all the fields have data
+                if (isContainData(batch, courseNo, courseTitle, semester, roll, incourse, fina, other) == false) {
+                    JOptionPane.showMessageDialog(frameTea, "Please Provide All Information!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    // convering marks into integer
+                    int incourseInt = Integer.parseInt(incourse);
+                    int finaInt = Integer.parseInt(fina);
+                    int otherInt = Integer.parseInt(other);
+                    
+                    // creating Grade object to calculate grade 
+                    Grade gradeObj = new Grade();
+                    // setting up the generator
+                    gradeObj.setMark(incourseInt, otherInt, finaInt);
+                    // getting required data
+                    String gradeLetter = gradeObj.gradeLetter();
+                    String gradePoint = Float.toString(gradeObj.gradePoint());
+                    
+                    // export data into confirmation page
+                    TeacherConfirmPage teach2Obj = new TeacherConfirmPage();
+                    teach2Obj.previousPageFrame(frameTea);
+                    teach2Obj.teacherconfirmpage(incourse, other, fina, batch, courseNo, courseTitle, semester, roll, gradeLetter, gradePoint);
+                    
+                    // hiding this input field
+                    frameTea.setVisible(false);
+                }
+                // export into Teacher Confirmation class
+            }
+        });
+    }
+    
+    private boolean isContainData(String...arr) {
+        boolean status = true;
+        for (String s: arr) {
+            if (s.compareTo("") == 0) {
+                status = false;
+                break;
+            }
+        }
+        return status;
     }
 }
