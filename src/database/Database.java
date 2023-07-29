@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.*;
 
+import java.util.ArrayList;
+
 import gradecalculation.Grade;
 /**
  *
@@ -122,16 +124,88 @@ public class Database {
     public String insertData(int semester_no, String course_no, String course_title, int inc, int fin) {
         String table = tableName(semester_no);
         String command;
+        // calculating grade letter and grade point
         Grade grd = new Grade();
         grd.setMark((inc), fin, 0);
         String grade_letter = grd.gradeLetter();
         float grade_point = grd.gradePoint();
+        
+        // getting previous grade points
+        ArrayList<Float> allPoints = getAllPoint(semester_no);
+        
+        allPoints.add(grade_point);
+        
+        // getting average grade point and average grade letter
+        String avgGP = Float.toString(grd.avgGradePoint(allPoints));
+        String avgGL = grd.avgGradeLetter(allPoints);
+        
         command = "INSERT INTO " + table + " (`Course No`, `Course Title`, `Incourse`, `Final`, `Grade Letter`, `Grade Point`, `Avg Grade Letter`, `Avg Grade Point`) " +
                 "VALUES " + "('" + course_no + "','" + course_title + "','" + Integer.toString(inc) + 
-                "','"+ Integer.toString(fin) + "','" + grade_letter+"','"+grade_point+"', 'NULL', '0.00')";
+                "','"+ Integer.toString(fin) + "','" + grade_letter+"','"+grade_point+"', '"+avgGL+"', '"+avgGP+"')";
         // System.out.println(command);
         return execute(command);
     }
+    
+    /**
+    * return all stored grade points of a table
+    * @param semester number
+    * @return ArrayList<Float>
+    */
+    private ArrayList<Float> getAllPoint(int semester_no) {
+        String table = tableName(semester_no);
+        ResultSet wholeData = getData(table);
+        ArrayList<Float> allPoints = new ArrayList<>();
+        try {
+            while (wholeData.next()) {
+                allPoints.add(Float.parseFloat(wholeData.getString("Grade Point")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error(File: Database, method: getAllPoint): " + e.getMessage());
+        }
+        return allPoints;
+    }
+    
+//    private void updateAvgGrade(int semester_no) {
+//        String table = tableName(semester_no);
+//        
+//        // get all the grade points of semester_no table and create a avg grade and store it
+//        String gPQuery = "SELECT `Grade Point` FROM `" + table + "`" ;
+//        try {
+//            // getting data from the table
+//            ResultSet gPData = statement.executeQuery(gPQuery);
+//            // storing them in a ArrayList
+//            ArrayList<Float> allPoints = new ArrayList<>();
+//            float sum = 0.0f;
+//            
+//            while (gPData.next()) {
+//                // invalidFloat will track if the data comming from "Grade Point"
+//                // is a valid float number or not
+//                boolean invalidFloat = false;
+//                String colValue = gPData.getString("Grade Point");
+//                float colvalueFloat;
+//                try {
+//                   colvalueFloat = Float.parseFloat(colValue); 
+//                } catch (NumberFormatException e) {
+//                    // if cant convert into a float, it is not a float number.
+//                    // so make invalidFloat equal to true
+//                    invalidFloat = true;
+//                    System.out.println("Error(File: Database, method: updateAvgGrade): " + e.getMessage());
+//                }
+//                if (invalidFloat == false) {
+//                    allPoints.add(Float.parseFloat(gPData.getString("Grade Point")));                    
+//                }
+//
+//            }
+//            
+//            Grade g = new Grade();
+//            String avgGP = Float.toString(g.avgGradePoint(allPoints));
+//            String avgGL = g.avgGradeLetter(allPoints);
+//            String gPInsert = "INSERT INTO `" + table  +"` (`Avg Grade Point`, `Avg Grade Letter`) VALUES ('" + avgGP +"', '"+ avgGL +"')";
+//            
+//        } catch (SQLException e) {
+//            System.out.println("Error(File: Databse, Method: insertData): " + e.getMessage());
+//        }
+//    }
     
     /**
      * clear all the data of a table
