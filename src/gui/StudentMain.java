@@ -5,12 +5,17 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.ArrayList; // for storing all the grade points
+
 import database.Database;
-import javax.swing.JComboBox;
+import gradecalculation.Grade;
 
 /**
  *
@@ -191,7 +196,6 @@ public class StudentMain {
         // row 1
         // field f11
         JTextField f11 = new JTextField();
-//        f11.setText("f11");
         int f11X = 50, f11Y = 300;
         f11.setBounds(f11X, f11Y, fW, fH);
         f11.setFont(new Font("Arial", Font.BOLD, 14));
@@ -201,7 +205,6 @@ public class StudentMain {
         
         // field f12
         JTextField f12 = new JTextField();
-        f12.setText("f12");
         int f12X = 125, f12Y = f11Y;
         f12.setBounds(f12X, f12Y, fW, fH);
         f12.setFont(new Font("Arial", Font.BOLD, 14));
@@ -211,7 +214,6 @@ public class StudentMain {
         
         // field f13
         JTextField f13 = new JTextField();
-        f13.setText("f13");
         int f13X = 200, f13Y = f11Y;
         f13.setBounds(f13X, f13Y, fW, fH);
         f13.setFont(new Font("Arial", Font.BOLD, 14));
@@ -240,7 +242,6 @@ public class StudentMain {
         // row 2
         // field f21
         JTextField f21 = new JTextField();
-        f21.setText("f21");
         int f21X = 50, f21Y = 350;
         f21.setBounds(f21X, f21Y, fW, fH);
         f21.setFont(new Font("Arial", Font.BOLD, 14));
@@ -250,7 +251,6 @@ public class StudentMain {
         
         // field f22
         JTextField f22 = new JTextField();
-        f22.setText("f22");
         int f22X = 125, f22Y = f21Y;
         f22.setBounds(f22X, f22Y, fW, fH);
         f22.setFont(new Font("Arial", Font.BOLD, 14));
@@ -260,7 +260,6 @@ public class StudentMain {
         
         // field f23
         JTextField f23 = new JTextField();
-        f23.setText("f23");
         int f23X = 200, f23Y = f21Y;
         f23.setBounds(f23X, f23Y, fW, fH);
         f23.setFont(new Font("Arial", Font.BOLD, 14));
@@ -289,7 +288,6 @@ public class StudentMain {
         // row 3
         // field f31
         JTextField f31 = new JTextField();
-        f31.setText("f31");
         int f31X = 50, f31Y = 400;
         f31.setBounds(f31X, f31Y, fW, fH);
         f31.setFont(new Font("Arial", Font.BOLD, 14));
@@ -299,7 +297,6 @@ public class StudentMain {
         
         // field f32
         JTextField f32 = new JTextField();
-        f32.setText("f31");
         int f32X = 125, f32Y = f31Y;
         f32.setBounds(f32X, f32Y, fW, fH);
         f32.setFont(new Font("Arial", Font.BOLD, 14));
@@ -309,7 +306,6 @@ public class StudentMain {
         
         // field f33
         JTextField f33 = new JTextField();
-        f33.setText("f33");
         int f33X = 200, f33Y = f31Y;
         f33.setBounds(f33X, f33Y, fW, fH);
         f33.setFont(new Font("Arial", Font.BOLD, 14));
@@ -338,7 +334,6 @@ public class StudentMain {
         // row 4
         // field f41
         JTextField f41 = new JTextField();
-        f41.setText("f41");
         int f41X = 50, f41Y = 450;
         f41.setBounds(f41X, f41Y, fW, fH);
         f41.setFont(new Font("Arial", Font.BOLD, 14));
@@ -348,7 +343,6 @@ public class StudentMain {
         
         // field f42
         JTextField f42 = new JTextField();
-        f42.setText("f42");
         int f42X = 125, f42Y = f41Y;
         f42.setBounds(f42X, f42Y, fW, fH);
         f42.setFont(new Font("Arial", Font.BOLD, 14));
@@ -358,7 +352,6 @@ public class StudentMain {
         
         // field f43
         JTextField f43 = new JTextField();
-        f43.setText("f43");
         int f43X = 200, f43Y = f41Y;
         f43.setBounds(f43X, f43Y, fW, fH);
         f43.setFont(new Font("Arial", Font.BOLD, 14));
@@ -387,7 +380,6 @@ public class StudentMain {
         // row 5
         // field f51
         JTextField f51 = new JTextField();
-        f51.setText("f51");
         int f51X = 50, f51Y = 500;
         f51.setBounds(f51X, f51Y, fW, fH);
         f51.setFont(new Font("Arial", Font.BOLD, 14));
@@ -397,7 +389,6 @@ public class StudentMain {
         
         // field f52
         JTextField f52 = new JTextField();
-        f52.setText("f52");
         int f52X = 125, f52Y = f51Y;
         f52.setBounds(f52X, f52Y, fW, fH);
         f52.setFont(new Font("Arial", Font.BOLD, 14));
@@ -407,7 +398,6 @@ public class StudentMain {
         
         // field f53
         JTextField f53 = new JTextField();
-        f53.setText("f53");
         int f53X = 200, f53Y = f51Y;
         f53.setBounds(f53X, f53Y, fW, fH);
         f53.setFont(new Font("Arial", Font.BOLD, 14));
@@ -436,7 +426,6 @@ public class StudentMain {
         // row 6
         // field f61
         JTextField f61 = new JTextField();
-        f61.setText("f61");
         int f61X = 50, f61Y = 550;
         f61.setBounds(f61X, f61Y, fW, fH);
         f61.setFont(new Font("Arial", Font.BOLD, 14));
@@ -446,7 +435,6 @@ public class StudentMain {
         
         // field f62
         JTextField f62 = new JTextField();
-        f62.setText("f62");
         int f62X = 125, f62Y = f61Y;
         f62.setBounds(f62X, f62Y, fW, fH);
         f62.setFont(new Font("Arial", Font.BOLD, 14));
@@ -456,7 +444,6 @@ public class StudentMain {
         
         // field f63
         JTextField f63 = new JTextField();
-        f63.setText("f63");
         int f63X = 200, f63Y = f61Y;
         f63.setBounds(f63X, f63Y, fW, fH);
         f63.setFont(new Font("Arial", Font.BOLD, 14));
@@ -530,7 +517,172 @@ public class StudentMain {
         frameStu.add(calBtn);
         frameStu.add(clrBtn);
         
+        // clear all the data from fields and set labels to its default state
+        clrBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // clearing fields
+                f11.setText("");
+                f12.setText("");
+                f13.setText("");
+                f21.setText("");
+                f22.setText("");
+                f23.setText("");
+                f31.setText("");
+                f32.setText("");
+                f33.setText("");
+                f41.setText("");
+                f42.setText("");
+                f43.setText("");
+                f51.setText("");
+                f52.setText("");
+                f53.setText("");
+                f61.setText("");
+                f62.setText("");
+                f63.setText("");
+                
+                // setting label to its default state
+                String defaultgL = "x";
+                String defaultgP = "0.00";
+                gL1.setText(defaultgL);
+                gP1.setText(defaultgP);
+                gL2.setText(defaultgL);
+                gP2.setText(defaultgP);
+                gL3.setText(defaultgL);
+                gP3.setText(defaultgP);
+                gL4.setText(defaultgL);
+                gP4.setText(defaultgP);
+                gL5.setText(defaultgL);
+                gP5.setText(defaultgP);
+                gL6.setText(defaultgL);
+                gP6.setText(defaultgP);
+                
+                gLFinal.setText(defaultgL);
+                gPFinal.setText(defaultgP);
+                
+                
+                
+            }
+        });
+        
+        // calculate grade Letter and grade Point of each row and place them in
+        // the corresponding gL gP
+        /*
+        f11 f12 f13 gL1 gP1
+        f21 f22 f23 gL2 gp2
+        f31 f32 f33 gL3 gp3
+        f41 f42 f43 gL4 gp4
+        f51 f52 f53 gL5 gp5
+        f61 f62 f63 gL6 gp6
+                    gLFinal gPFinal
         
         
+        */ 
+        calBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Grade grade = new Grade();
+                
+                // store all the points
+                ArrayList<Float> allPoints = new ArrayList<>();
+                
+                
+                // calculate row 1
+                if (f11.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f12.getText());
+                    int fina = Integer.parseInt(f13.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL1.setText(gL);
+                    gP1.setText(gP);
+                }
+                // calculate row 2
+                if (f21.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f22.getText());
+                    int fina = Integer.parseInt(f23.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL2.setText(gL);
+                    gP2.setText(gP);
+                }
+                // calculate row 3
+                if (f31.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f32.getText());
+                    int fina = Integer.parseInt(f33.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL3.setText(gL);
+                    gP3.setText(gP);
+                }
+                // calculate row 4
+                if (f41.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f42.getText());
+                    int fina = Integer.parseInt(f43.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL4.setText(gL);
+                    gP4.setText(gP);
+                }
+                // calculate row 5
+                if (f51.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f52.getText());
+                    int fina = Integer.parseInt(f53.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL5.setText(gL);
+                    gP5.setText(gP);
+                }
+                // calculate row 6
+                if (f61.getText().length() > 3) {
+                    // getting inputed data
+                    int incourse = Integer.parseInt(f62.getText());
+                    int fina = Integer.parseInt(f63.getText());
+                    // calculating letter and point
+                    grade.setMark(incourse, fina, 0);
+                    String gL = grade.gradeLetter();
+                    float p = grade.gradePoint();
+                    allPoints.add(p);
+                    String gP = Float.toString(p);
+                    // putting result on frame
+                    gL6.setText(gL);
+                    gP6.setText(gP);
+                }
+                
+                // calculate average letter and point
+                float avgPoint = grade.avgGradePoint(allPoints);
+                String avgLetter = grade.avgGradeLetter(allPoints);
+                gLFinal.setText(avgLetter);
+                gPFinal.setText(Float.toString(avgPoint));
+                
+            }
+        });
     }
 }

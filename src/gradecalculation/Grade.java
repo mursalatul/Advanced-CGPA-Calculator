@@ -1,6 +1,7 @@
 package gradecalculation;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /*
 class: Grade
@@ -115,11 +116,11 @@ public class Grade {
      * @param gradePoints
      * @return avg grade point off all the grade points
      */
-    public float avgGradePoint(float[] gradePoints) {
-        int size = gradePoints.length;
+    public float avgGradePoint(ArrayList<Float> gradePoints) {
+        int size = gradePoints.size();
         float sum = 0.0f;
-        for (int i = 0; i < size; i++) {
-            sum += gradePoints[i];
+        for (float f: gradePoints) {
+            sum += f;
         }
         return sum / size;
     }
@@ -129,7 +130,7 @@ public class Grade {
      * @param gradePoints
      * @return avg grade letter off all the grade letter
      */
-    public String avgGradeLetter(float[] gradePoints) {
+    public String avgGradeLetter(ArrayList<Float> gradePoints) {
         float avgGradePoint = avgGradePoint(gradePoints);
         if (avgGradePoint >= 4.00f) {
             return "A+";
