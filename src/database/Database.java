@@ -165,47 +165,6 @@ public class Database {
         return allPoints;
     }
     
-//    private void updateAvgGrade(int semester_no) {
-//        String table = tableName(semester_no);
-//        
-//        // get all the grade points of semester_no table and create a avg grade and store it
-//        String gPQuery = "SELECT `Grade Point` FROM `" + table + "`" ;
-//        try {
-//            // getting data from the table
-//            ResultSet gPData = statement.executeQuery(gPQuery);
-//            // storing them in a ArrayList
-//            ArrayList<Float> allPoints = new ArrayList<>();
-//            float sum = 0.0f;
-//            
-//            while (gPData.next()) {
-//                // invalidFloat will track if the data comming from "Grade Point"
-//                // is a valid float number or not
-//                boolean invalidFloat = false;
-//                String colValue = gPData.getString("Grade Point");
-//                float colvalueFloat;
-//                try {
-//                   colvalueFloat = Float.parseFloat(colValue); 
-//                } catch (NumberFormatException e) {
-//                    // if cant convert into a float, it is not a float number.
-//                    // so make invalidFloat equal to true
-//                    invalidFloat = true;
-//                    System.out.println("Error(File: Database, method: updateAvgGrade): " + e.getMessage());
-//                }
-//                if (invalidFloat == false) {
-//                    allPoints.add(Float.parseFloat(gPData.getString("Grade Point")));                    
-//                }
-//
-//            }
-//            
-//            Grade g = new Grade();
-//            String avgGP = Float.toString(g.avgGradePoint(allPoints));
-//            String avgGL = g.avgGradeLetter(allPoints);
-//            String gPInsert = "INSERT INTO `" + table  +"` (`Avg Grade Point`, `Avg Grade Letter`) VALUES ('" + avgGP +"', '"+ avgGL +"')";
-//            
-//        } catch (SQLException e) {
-//            System.out.println("Error(File: Databse, Method: insertData): " + e.getMessage());
-//        }
-//    }
     
     /**
      * clear all the data of a table
