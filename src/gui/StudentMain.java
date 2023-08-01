@@ -34,12 +34,13 @@ public class StudentMain {
         Border border = BorderFactory.createLineBorder(Color.BLUE, 0);
 
         // window heading
-        JLabel heading = new JLabel("CGPA Calculator");
+        JLabel heading = new JLabel("<html><u>CGPA Calculator</u></html>");
         // change the value for positioning
-        int headingX = 317, headingY = 5, headingW = 165, headingH = 30;
-        heading.setFont(new Font("Arial", Font.BOLD, 20));
+        int headingX = 290, headingY = 5, headingW = 220, headingH = 30;
+        heading.setFont(new Font("Arial", Font.BOLD, 25));
         heading.setBounds(headingX, headingY, headingW, headingH);
         heading.setVisible(true);
+        heading.setHorizontalAlignment(SwingConstants.CENTER);
         frameStu.add(heading);
         heading.setBorder(border);
 
@@ -66,7 +67,7 @@ public class StudentMain {
         // show full name
         JLabel fNameL = new JLabel();
         fNameL.setText(fullName);
-        int fNameLX = 150, fNameLY = 50, fNameLW = 400, fNameLH = 30;
+        int fNameLX = 50, fNameLY = 50, fNameLW = 400, fNameLH = 30;
         fNameL.setBounds(fNameLX, fNameLY, fNameLW, fNameLH);
         fNameL.setFont(new Font("Arial", Font.BOLD, 15));
         fNameL.setVisible(true);
@@ -76,7 +77,7 @@ public class StudentMain {
         // show batch
         JLabel batchL = new JLabel();
         batchL.setText(batch);
-        int batchLX = 150, batchLY = 90, batchLW = 100, batchLH = 30;
+        int batchLX = 50, batchLY = 90, batchLW = 100, batchLH = 30;
         batchL.setBounds(batchLX, batchLY, batchLW, batchLH);
         batchL.setFont(new Font("Arial", Font.BOLD, 10));
         batchL.setVisible(true);
@@ -86,7 +87,7 @@ public class StudentMain {
         // show roll
         JLabel rollL = new JLabel();
         rollL.setText("Roll: " + roll);
-        int rollLX = 190, rollLY = 90, rollLW = 100, rollLH = 30;
+        int rollLX = 100, rollLY = 90, rollLW = 100, rollLH = 30;
         rollL.setBounds(rollLX, rollLY, rollLW, rollLH);
         rollL.setFont(new Font("Arial", Font.BOLD, 10));
         rollL.setVisible(true);
