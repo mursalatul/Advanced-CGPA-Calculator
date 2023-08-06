@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class TeacherInputPage {
 
-    public void teacher() {
+    public void teacher(JFrame frameLogin, JPasswordField passField) {
         JFrame frameTea = new JFrame();
         frameTea.setSize(400, 560);
         frameTea.setResizable(false);
@@ -342,6 +342,40 @@ public class TeacherInputPage {
                     frameTea.setVisible(false);
                 }
                 // export into Teacher Confirmation class
+            }
+        });
+        
+        // logout button
+        JButton logoutBtn = new JButton("Logout");
+        logoutBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        logoutBtn.setBounds(50, 510, 80, 20);
+        logoutBtn.setVisible(true);
+        logoutBtn.setBorder(border);
+        logoutBtn.setBackground(Color.CYAN);
+        frameTea.add(logoutBtn);
+        logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // deleting this teacher frame.
+                frameTea.dispose();
+                // opening the login field again and clearing the password
+                passField.setText("");
+                frameLogin.setVisible(true);
+            }
+        });
+        
+        // exit application.
+        JButton exitBtn = new JButton("EXIT");
+        exitBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        exitBtn.setBounds(270, 510, 80, 20);
+        exitBtn.setVisible(true);
+        exitBtn.setBorder(border);
+        exitBtn.setBackground(Color.RED);
+        frameTea.add(exitBtn);
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
     }

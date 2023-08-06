@@ -23,9 +23,9 @@ import gradecalculation.Grade;
  */
 public class StudentMain {
 
-    public void studentmain(String roll) {
+    public void studentmain(String roll, JFrame frameLogin, JPasswordField passField) {
         JFrame frameStu = new JFrame();
-        frameStu.setSize(800, 800);
+        frameStu.setSize(800, 850);
         frameStu.setResizable(false);
         frameStu.setLayout(null);
         frameStu.setVisible(true);
@@ -757,6 +757,41 @@ public class StudentMain {
                 }
             }
         });
+        
+        // logout button
+        JButton logoutBtn = new JButton("Logout");
+        logoutBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        logoutBtn.setBounds(50, 660, 80, 20);
+        logoutBtn.setVisible(true);
+        logoutBtn.setBorder(border);
+        logoutBtn.setBackground(Color.CYAN);
+        frameStu.add(logoutBtn);
+        logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // deleting this student frame.
+                frameStu.dispose();
+                // opening the login field again and clearing the password
+                passField.setText("");
+                frameLogin.setVisible(true);
+            }
+        });
+        
+        // exit application.
+        JButton exitBtn = new JButton("EXIT");
+        exitBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        exitBtn.setBounds(50 + 90, 660, 80, 20);
+        exitBtn.setVisible(true);
+        exitBtn.setBorder(border);
+        exitBtn.setBackground(Color.RED);
+        frameStu.add(exitBtn);
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
     }
 
     /**

@@ -117,13 +117,18 @@ public class Login {
                        // extractiong roll from password
                        String roll = extractRoll(password);
                        StudentMain studentGUIObj = new StudentMain();
-                       studentGUIObj.studentmain(roll);
+                       studentGUIObj.studentmain(roll, frame, passField);
                    }
                    // call teacher
                    else {
                        TeacherInputPage teach1Obj = new TeacherInputPage();
-                       teach1Obj.teacher();
+                       teach1Obj.teacher(frame, passField);
                    }
+                   /*
+                       roll: for target spacific student
+                       frame: for logout and come back to this frame
+                       passField: for clearing the passField before coming back here
+                   */
                }
                else {
                    JOptionPane.showMessageDialog(frame, "Invalid Username or Password!", "Error", JOptionPane.ERROR_MESSAGE);
