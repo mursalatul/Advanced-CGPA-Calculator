@@ -50,6 +50,17 @@ public class TeacherConfirmPage {
         frameTea2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // no border is visible, but it is helpfull to element visiblity
         Border border = BorderFactory.createLineBorder(Color.BLUE, 0);
+        
+        // roll
+        // roll label
+        JLabel rollL = new JLabel("Roll      :" + incourse);
+        // positioning variables
+        int rollLX = 50, rollLY = 10, rollLW = 200, rollLH = 20;
+        rollL.setBounds(rollLX, rollLY, rollLW, rollLH);
+        rollL.setFont(new Font("Arial", Font.BOLD, 15));
+        rollL.setVisible(true);
+        frameTea2.add(rollL);
+        rollL.setBorder(border);
 
         // incourse
         // incourse label
@@ -107,7 +118,7 @@ public class TeacherConfirmPage {
         gPointL.setBorder(border);
 
         // redo button
-        JButton redoB = new JButton("Redo");
+        JButton redoB = new JButton("Back");
         int redoBX = 49, redoBY = 250, redoBW = 150, redoBH = 40;
         redoB.setBounds(redoBX, redoBY, redoBW, redoBH);
         redoB.setVisible(true);
