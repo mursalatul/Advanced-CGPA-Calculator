@@ -8,9 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import gradecalculation.Grade;
+import dataverification.InputVerification;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 /**
  *
@@ -111,7 +111,6 @@ public class TeacherInputPage {
         showResB.setVisible(true);
         frameTea.add(showResB);
         showResB.setBorder(border);
-        
 
         // heading of semester wise cgpa show
         // "grade letter" text(beside "See CGPA" text)
@@ -160,36 +159,40 @@ public class TeacherInputPage {
             public void actionPerformed(ActionEvent e) {
                 // checking if batch semester and roll field in given
                 if (batchF.getText().length() > 0 && semF.getText().length() > 0 && rollF.getText().length() > 0) {
-                    // getting batch semester and roll
-                    String batch = batchF.getText();
-                    String semester = "semester"+semF.getText(); // 1 -> semester1
-                    String roll = rollF.getText();
-                    
-                    
-                    // connecting roll database
-                    Database dbObj = new Database();
-                    dbObj.connect(roll);
-                    
-                    ResultSet allData = dbObj.getData(semester);
+                    // checking if semester number and roll is a number
+                    if (InputVerification.isNumber(semF.getText(), rollF.getText())) {
+                        // getting batch semester and roll
+                        String batch = batchF.getText();
+                        String semester = "semester" + semF.getText(); // 1 -> semester1
+                        String roll = rollF.getText();
 
-                    // last average grade letter and point
-                    String avgGL = "", avgGP = "";
-                    try {
-                        while (allData.next()) {
-                            avgGL = allData.getString("Avg Grade Letter");
-                            avgGP = allData.getString("Avg Grade Point");
+                        // connecting roll database
+                        Database dbObj = new Database();
+                        dbObj.connect(roll);
+
+                        ResultSet allData = dbObj.getData(semester);
+
+                        // last average grade letter and point
+                        String avgGL = "", avgGP = "";
+                        try {
+                            while (allData.next()) {
+                                avgGL = allData.getString("Avg Grade Letter");
+                                avgGP = allData.getString("Avg Grade Point");
+                            }
+                        } catch (SQLException e2) {
+                            System.out.println("Error(File: StudentMain, reading roll database, semester table):" + e2.getMessage());
                         }
-                    } catch (SQLException e2) {
-                        System.out.println("Error(File: StudentMain, reading roll database, semester table):" + e2.getMessage());
+
+                        System.out.println(avgGL + " " + avgGP);
+
+                        // print avgGL and avgGP after the button
+                        avgGLL.setText(avgGL);
+                        avgGPL.setText(avgGP);
                     }
-
-                    System.out.println(avgGL + " " + avgGP);
-
-                    // print avgGL and avgGP after the button
-                    avgGLL.setText(avgGL);
-                    avgGPL.setText(avgGP);
-                } 
-                else {
+                    else {
+                        JOptionPane.showMessageDialog(frameTea, "Invalid Semester and Roll format", "Error", JOptionPane.ERROR_MESSAGE);                        
+                    }
+                } else {
                     JOptionPane.showMessageDialog(frameTea, "Must Give Batch, Semester and Roll", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -198,7 +201,7 @@ public class TeacherInputPage {
         //
         //
         // show result of the batch -> semester -> roll(end)
-        
+
         // Course
         // Course label
         JLabel courseL = new JLabel("Course No");
@@ -344,7 +347,7 @@ public class TeacherInputPage {
                 // export into Teacher Confirmation class
             }
         });
-        
+
         // logout button
         JButton logoutBtn = new JButton("Logout");
         logoutBtn.setFont(new Font("Arial", Font.BOLD, 13));
@@ -363,7 +366,7 @@ public class TeacherInputPage {
                 frameLogin.setVisible(true);
             }
         });
-        
+
         // exit application.
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setFont(new Font("Arial", Font.BOLD, 13));
