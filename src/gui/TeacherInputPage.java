@@ -188,9 +188,8 @@ public class TeacherInputPage {
                         // print avgGL and avgGP after the button
                         avgGLL.setText(avgGL);
                         avgGPL.setText(avgGP);
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(frameTea, "Invalid Semester and Roll format", "Error", JOptionPane.ERROR_MESSAGE);                        
+                    } else {
+                        JOptionPane.showMessageDialog(frameTea, "Invalid Semester and Roll format", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(frameTea, "Must Give Batch, Semester and Roll", "Error", JOptionPane.ERROR_MESSAGE);
@@ -323,26 +322,31 @@ public class TeacherInputPage {
                 if (isContainData(batch, courseNo, courseTitle, semester, roll, incourse, fina, other) == false) {
                     JOptionPane.showMessageDialog(frameTea, "Please Provide All Information!", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // convering marks into integer
-                    int incourseInt = Integer.parseInt(incourse);
-                    int finaInt = Integer.parseInt(fina);
-                    int otherInt = Integer.parseInt(other);
+                    // check if roll, sem, and marks are int
+                    if (InputVerification.isNumber(semester, roll, incourse, fina, other) == false) {
+                        JOptionPane.showMessageDialog(frameTea, "Semester, roll and marks should be a number!", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        // convering marks into integer
+                        int incourseInt = Integer.parseInt(incourse);
+                        int finaInt = Integer.parseInt(fina);
+                        int otherInt = Integer.parseInt(other);
 
-                    // creating Grade object to calculate grade 
-                    Grade gradeObj = new Grade();
-                    // setting up the generator
-                    gradeObj.setMark(incourseInt, otherInt, finaInt);
-                    // getting required data
-                    String gradeLetter = gradeObj.gradeLetter();
-                    String gradePoint = Float.toString(gradeObj.gradePoint());
+                        // creating Grade object to calculate grade 
+                        Grade gradeObj = new Grade();
+                        // setting up the generator
+                        gradeObj.setMark(incourseInt, otherInt, finaInt);
+                        // getting required data
+                        String gradeLetter = gradeObj.gradeLetter();
+                        String gradePoint = Float.toString(gradeObj.gradePoint());
 
-                    // export data into confirmation page
-                    TeacherConfirmPage teach2Obj = new TeacherConfirmPage();
-                    teach2Obj.previousPageFrame(frameTea);
-                    teach2Obj.teacherconfirmpage(incourse, other, fina, batch, courseNo, courseTitle, semester, roll, gradeLetter, gradePoint);
+                        // export data into confirmation page
+                        TeacherConfirmPage teach2Obj = new TeacherConfirmPage();
+                        teach2Obj.previousPageFrame(frameTea);
+                        teach2Obj.teacherconfirmpage(incourse, other, fina, batch, courseNo, courseTitle, semester, roll, gradeLetter, gradePoint);
 
-                    // hiding this input field
-                    frameTea.setVisible(false);
+                        // hiding this input field
+                        frameTea.setVisible(false);
+                    }
                 }
                 // export into Teacher Confirmation class
             }
