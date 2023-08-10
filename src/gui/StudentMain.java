@@ -16,6 +16,7 @@ import java.util.ArrayList; // for storing all the grade points
 
 import database.Database;
 import gradecalculation.Grade;
+import dataverification.InputVerification;
 
 /**
  *
@@ -25,18 +26,20 @@ public class StudentMain {
 
     public void studentmain(String roll, JFrame frameLogin, JPasswordField passField) {
         JFrame frameStu = new JFrame();
-        frameStu.setSize(800, 850);
+        frameStu.setSize(600, 850);
         frameStu.setResizable(false);
         frameStu.setLayout(null);
         frameStu.setVisible(true);
         frameStu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // no border is visible, but it is helpfull to element visiblity
         Border border = BorderFactory.createLineBorder(Color.BLUE, 0);
+        // use this border to indicate that, the data of this component is invalid
+        Border redHighLightBorder = BorderFactory.createLineBorder(Color.RED, 1);
 
         // window heading
         JLabel heading = new JLabel("<html><u>CGPA Calculator</u></html>");
         // change the value for positioning
-        int headingX = 290, headingY = 5, headingW = 220, headingH = 30;
+        int headingX = 190, headingY = 5, headingW = 220, headingH = 30;
         heading.setFont(new Font("Arial", Font.BOLD, 25));
         heading.setBounds(headingX, headingY, headingW, headingH);
         heading.setVisible(true);
@@ -103,7 +106,7 @@ public class StudentMain {
         l1.setVisible(true);
         frameStu.add(l1);
         l1.setBorder(border);
-        
+
         // heading of semester wise cgpa show
         // "grade letter" text(beside "See CGPA" text)
         JLabel gLHeading = new JLabel();
@@ -657,99 +660,302 @@ public class StudentMain {
                 // calculate row 1
                 if (f11.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f12.getText());
-                    int fina = Integer.parseInt(f13.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL1.setText(gL);
-                    gP1.setText(gP);
+                    String incourseStr = f12.getText();
+                    String finaStr = f13.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f12.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f12.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f13.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f13.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL1.setText(gL);
+                            gP1.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // calculate row 2
-                if (f21.getText().length() > 3) {
+                if (f11.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f22.getText());
-                    int fina = Integer.parseInt(f23.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL2.setText(gL);
-                    gP2.setText(gP);
+                    String incourseStr = f22.getText();
+                    String finaStr = f23.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f22.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f22.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f23.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f23.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL2.setText(gL);
+                            gP2.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // calculate row 3
                 if (f31.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f32.getText());
-                    int fina = Integer.parseInt(f33.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL3.setText(gL);
-                    gP3.setText(gP);
+                    String incourseStr = f32.getText();
+                    String finaStr = f33.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f32.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f32.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f33.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f33.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL3.setText(gL);
+                            gP3.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // calculate row 4
                 if (f41.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f42.getText());
-                    int fina = Integer.parseInt(f43.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL4.setText(gL);
-                    gP4.setText(gP);
+                    String incourseStr = f42.getText();
+                    String finaStr = f43.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f42.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f42.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f43.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f43.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL4.setText(gL);
+                            gP4.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // calculate row 5
                 if (f51.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f52.getText());
-                    int fina = Integer.parseInt(f53.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL5.setText(gL);
-                    gP5.setText(gP);
+                    String incourseStr = f52.getText();
+                    String finaStr = f53.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f52.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f52.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f53.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f53.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL5.setText(gL);
+                            gP5.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 // calculate row 6
                 if (f61.getText().length() > 3) {
                     // getting inputed data
-                    int incourse = Integer.parseInt(f62.getText());
-                    int fina = Integer.parseInt(f63.getText());
-                    // calculating letter and point
-                    grade.setMark(incourse, fina, 0);
-                    String gL = grade.gradeLetter();
-                    float p = grade.gradePoint();
-                    allPoints.add(p);
-                    String gP = Float.toString(p);
-                    // putting result on frame
-                    gL6.setText(gL);
-                    gP6.setText(gP);
+                    String incourseStr = f62.getText();
+                    String finaStr = f63.getText();
+
+                    // verifying inputed data
+                    // getting the data condition
+                    boolean incourseMarkStatus = InputVerification.isNumber(incourseStr);
+                    boolean finaMarkStatus = InputVerification.isNumber(finaStr);
+
+                    // setting up the border
+                    if (incourseMarkStatus) {
+                        f62.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f62.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (finaMarkStatus) {
+                        f63.setBorder(border); // clearing red border(if any)
+                    } else {
+                        f63.setBorder(redHighLightBorder); // add red border
+                    }
+
+                    if (incourseMarkStatus && finaMarkStatus) {
+                        // converting the numbers into integer number
+                        int incourse = Integer.parseInt(incourseStr);
+                        int fina = Integer.parseInt(finaStr);
+
+                        // check if the incourse & final marks are less or equal to 50
+                        if (incourse <= 50 && fina <= 50) {
+                            // calculating letter and point
+                            grade.setMark(incourse, fina, 0);
+                            String gL = grade.gradeLetter();
+                            float p = grade.gradePoint();
+                            allPoints.add(p);
+                            String gP = Float.toString(p);
+                            // putting result on frame
+                            gL6.setText(gL);
+                            gP6.setText(gP);
+                        } else {
+                            // show marks should be in 0-50
+                            JOptionPane.showMessageDialog(frameStu, "Marks should be in 0-50", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // show error message
+                        JOptionPane.showMessageDialog(frameStu, "Entered data is not a mark!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-                
+
                 // calculate average letter and point
-                
                 float avgPoint = grade.avgGradePoint(allPoints);
                 String avgLetter = grade.avgGradeLetter(allPoints);
-                
+
                 // if no data given by user,dont update label
                 if (allPoints.size() != 0) {
                     gLFinal.setText(avgLetter);
@@ -757,7 +963,7 @@ public class StudentMain {
                 }
             }
         });
-        
+
         // logout button
         JButton logoutBtn = new JButton("Logout");
         logoutBtn.setFont(new Font("Arial", Font.BOLD, 13));
@@ -776,7 +982,7 @@ public class StudentMain {
                 frameLogin.setVisible(true);
             }
         });
-        
+
         // exit application.
         JButton exitBtn = new JButton("EXIT");
         exitBtn.setFont(new Font("Arial", Font.BOLD, 13));
@@ -791,7 +997,7 @@ public class StudentMain {
                 System.exit(0);
             }
         });
-        
+
     }
 
     /**
