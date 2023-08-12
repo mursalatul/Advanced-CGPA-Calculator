@@ -53,7 +53,7 @@ public class TeacherConfirmPage {
         
         // roll
         // roll label
-        JLabel rollL = new JLabel("Roll      :" + incourse);
+        JLabel rollL = new JLabel("Roll      :" + roll);
         // positioning variables
         int rollLX = 50, rollLY = 10, rollLW = 200, rollLH = 20;
         rollL.setBounds(rollLX, rollLY, rollLW, rollLH);

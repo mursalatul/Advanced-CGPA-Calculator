@@ -707,7 +707,7 @@ public class StudentMain {
                     }
                 }
                 // calculate row 2
-                if (f11.getText().length() > 3) {
+                if (f21.getText().length() > 3) {
                     // getting inputed data
                     String incourseStr = f22.getText();
                     String finaStr = f23.getText();
