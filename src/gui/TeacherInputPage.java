@@ -20,7 +20,7 @@ public class TeacherInputPage {
 
     public void teacher(JFrame frameLogin, JPasswordField passField) {
         JFrame frameTea = new JFrame();
-        frameTea.setSize(400, 560);
+        frameTea.setSize(400, 580);
         frameTea.setResizable(false);
         frameTea.setLayout(null);
         frameTea.setVisible(true);

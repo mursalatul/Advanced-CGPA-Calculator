@@ -28,7 +28,7 @@ public class Login {
         JLabel heading = new JLabel("Login");
         // change the value for positioning
         int headingX = 170, headingY = 5, headingW = 100, headingH = 30;
-        heading.setFont(new Font("Arial", Font.BOLD, 20));
+        heading.setFont(new Font("Arial", Font.BOLD, 22));
         heading.setBounds(headingX, headingY, headingW, headingH);
         heading.setVisible(true);
         frame.add(heading);
@@ -136,6 +136,20 @@ public class Login {
            } 
         });
         
+        // exit application.
+        JButton exitBtn = new JButton("EXIT");
+        exitBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        exitBtn.setBounds(160, 400, 80, 20);
+        exitBtn.setVisible(true);
+        exitBtn.setBorder(border);
+        exitBtn.setBackground(Color.RED);
+        frame.add(exitBtn);
+        exitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         
     }
     /**

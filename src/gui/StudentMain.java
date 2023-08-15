@@ -26,7 +26,7 @@ public class StudentMain {
 
     public void studentmain(String roll, JFrame frameLogin, JPasswordField passField) {
         JFrame frameStu = new JFrame();
-        frameStu.setSize(600, 850);
+        frameStu.setSize(600, 750);
         frameStu.setResizable(false);
         frameStu.setLayout(null);
         frameStu.setVisible(true);
