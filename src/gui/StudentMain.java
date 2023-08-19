@@ -997,6 +997,8 @@ public class StudentMain {
                 System.exit(0);
             }
         });
+        
+        frameStu.repaint();
 
     }
 

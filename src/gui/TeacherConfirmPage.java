@@ -171,5 +171,7 @@ public class TeacherConfirmPage {
                 previousFrame.setVisible(true);
             }
         });
+        
+        frameTea2.repaint();
     }
 }

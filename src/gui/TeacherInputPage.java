@@ -385,6 +385,8 @@ public class TeacherInputPage {
                 System.exit(0);
             }
         });
+        
+        frameTea.repaint();
     }
 
     private boolean isContainData(String... arr) {

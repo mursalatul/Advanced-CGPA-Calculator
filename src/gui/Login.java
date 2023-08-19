@@ -144,6 +144,7 @@ public class Login {
         exitBtn.setBorder(border);
         exitBtn.setBackground(Color.RED);
         frame.add(exitBtn);
+        frame.repaint();
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
