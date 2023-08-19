@@ -20,3 +20,6 @@
   <li>Double check imputed data before uploading it</li>
   <img src="/data/images/tea3.png">
 </ul>
+<hr>
+<h2>Try It!</h2>
+Download:  <a href="https://github.com/mursalatul/Advanced-CGPA-Calculator/releases/tag/v1.0.0-beta.0">JAR</a>
